@@ -1,8 +1,4 @@
-P = "Many consider Maradona as the best player in soccer history"
-R = "Maradona is one of the best soccer player"
-
-
-def wordSim(P=P, R=R):
+def wordSim(P, R):
     # P = P.strip().split()
     # R = R.strip().split()
     if len(R) > len(P):
@@ -36,6 +32,5 @@ def wordSim(P=P, R=R):
             return 1 - (2 * sumi / (float(len(common) ** 2) - 1)), common
         elif len(common) % 2 != 0 and len(common) == 1:
             return 1, common
-    except:
+    except ZeroDivisionError:
         return 0, []
-# print wordSim()

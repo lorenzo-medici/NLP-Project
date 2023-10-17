@@ -3,8 +3,9 @@
 ## Project structure
 
 Notes in all files
-The directory contains a copy of the external GitHub repo, converted to python 3.
-I (Lorenzo) will clean it and take care of the first and last methods to implement.
+The directory contains a copy of the external GitHub repo, converted to python 3 and cleaned a bit:
+- seless files (and dependencies) have been removed
+- the code contained in the `main.py` file has been transformed into a function that can be imported from other files
 
 When adding dependencies you should run `pipreqs . --force` from the root directory, after installing it with `pip install pipreqs`.
 

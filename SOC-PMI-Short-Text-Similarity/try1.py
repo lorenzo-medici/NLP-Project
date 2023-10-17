@@ -1,13 +1,8 @@
-def display(array, len1, len2, string1, string2):
-    print(list(string2))
-    for i in range(1, len1 + 1):
-        print(string1[i - 1], array[i])
-
-
 def dynammicProg(string1="Pritish", string2="Yuvraj"):
     len1, len2 = len(string1), len(string2)
     string1, string2 = string1.lower(), string2.lower()
-    array = [[0 for i in range(len2 + 1)] for j in range(len1 + 1)]
+    # array = [[0 for i in range(len2 + 1)] for j in range(len1 + 1)]
+    array = matrix_of_lists(len1 + 1, len2 + 1)
     for i in range(len1 + 1):
         for j in range(len2 + 1):
             if i == 0 or j == 0:
@@ -20,7 +15,8 @@ def dynammicProg(string1="Pritish", string2="Yuvraj"):
     # print(array
     # print("Printing"
     # display(array, len1, len2, string1, string2)
-    return array[i][j]
+
+    return array[len1][len2]
 
 
 def starting(string1="Pritish", string2="Pritieish"):
@@ -83,4 +79,16 @@ def calling(string1="place", string2="land"):
     alpha = 0.33 * (V1 + V2 + V3)
     # print(alpha
     return alpha
+
+
 # calling()
+
+
+def matrix_of_lists(height, width):
+    res = []
+    for h in range(height):
+        res.append([])
+        for w in range(width):
+            res[h].append(0.0)
+
+    return res
