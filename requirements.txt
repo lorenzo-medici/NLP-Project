@@ -1,0 +1,4 @@
+beautifulsoup4==4.12.2
+nltk==3.8.1
+numpy==1.26.1
+pandas==2.1.1
