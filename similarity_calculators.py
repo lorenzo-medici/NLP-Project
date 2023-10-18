@@ -9,6 +9,7 @@
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+from SOC_PMI_Short_Text_Similarity.main import soc_similarity
 from preprocess import word_similarity
 
 
@@ -52,3 +53,7 @@ def method_1_wordnet(S1, S2):
     Sim = (Sim_score1 + Sim_score2) / 2
 
     return round(Sim, 2)
+
+
+def method_4_library(S1, S2):
+    return soc_similarity(S1, S2)
