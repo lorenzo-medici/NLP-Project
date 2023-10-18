@@ -1,6 +1,5 @@
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import RegexpTokenizer
 
 import try1
 import wn3
@@ -8,10 +7,6 @@ import wordSim
 
 
 def soc_similarity(S1, S2):
-    tokenizer = RegexpTokenizer(r'\w+')
-    S1 = tokenizer.tokenize(S1)
-    S2 = tokenizer.tokenize(S2)
-
     ltz = WordNetLemmatizer()
     S1 = [ltz.lemmatize(word.lower()) for word in S1]
     S2 = [ltz.lemmatize(word.lower()) for word in S2]
