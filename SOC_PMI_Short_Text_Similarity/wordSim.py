@@ -1,6 +1,4 @@
 def wordSim(P, R):
-    # P = P.strip().split()
-    # R = R.strip().split()
     if len(R) > len(P):
         P, R = R, P
     common = {}

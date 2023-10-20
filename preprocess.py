@@ -4,8 +4,15 @@ import nltk
 from nltk import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
-nltk.download('wordnet')
-nltk.download('stopwords')
+try:
+    nltk.find('corpora/wordnet.zip')
+except LookupError:
+    nltk.download('wordnet')
+
+try:
+    nltk.find('corpora/stopwords.zip')
+except LookupError:
+    nltk.download('stopwords')
 
 from nltk.corpus import wordnet
 

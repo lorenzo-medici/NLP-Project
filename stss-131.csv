@@ -1,4 +1,4 @@
-SP;Sentence1;Sentence2;X (Human ratings of semanticsimilarity);S
+SP;Sentence1;Sentence2;X;S
 66;Would you like to go out to drink with me tonight?;I really don't know what to eat tonight so I might go out somewhere.;1.01;0.77
 67;I advise you to treat this matter very seriously as it is vital.;You must take this most seriously, it will affect you.;3.38;0.69
 68;When I was going out to meet my friends there was a delay at the train station.;The train operator announced to the passengers that the train would be delayed.;3.13;0.68
