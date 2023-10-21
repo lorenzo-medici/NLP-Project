@@ -1,5 +1,6 @@
 # This file contains big preprocessing functions needed by the similarity
 #   calculators, or common preprocessing steps between methods
+import spacy
 import nltk
 from nltk import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
@@ -16,6 +17,7 @@ except LookupError:
 
 from nltk.corpus import wordnet
 
+nlp = spacy.load("en_core_web_sm")
 
 def word_similarity(P, R):
     if len(R) > len(P):
@@ -58,7 +60,8 @@ def word_similarity(P, R):
 # return_word_tag_type is used to return a list of tuples with (word, pos_tag). pos_tag is
 #   a simplified subset contained in tag_dict. You can use comparisons such as "== wordnet.NOUN"
 #   on this field
-def preprocess_sentence(sentence, wordnet_lemmization=False, return_word_tag_type=False):
+# spacy_named_entities_removal is used to remove named entities (ex: New York, UK) from sentence
+def preprocess_sentence(sentence, wordnet_lemmization=False, return_word_tag_type=False, spacy_named_entities_removal = False):
     eng_stopwords = nltk.corpus.stopwords.words('english')
 
     tag_dict = {"J": wordnet.ADJ,
@@ -71,11 +74,30 @@ def preprocess_sentence(sentence, wordnet_lemmization=False, return_word_tag_typ
 
     words = [(w[0], tag_dict.get(w[1][0].upper(), wordnet.NOUN)) for w in words]
 
+    if spacy_named_entities_removal:
+        doc = nlp(sentence)
+        words = [ent.text for ent in doc if not ent.ent_type_]
+    
     if wordnet_lemmization:
         wnl = WordNetLemmatizer()
         words = [(wnl.lemmatize(w[0], pos=w[1]), w[1]) for w in words]
 
     if return_word_tag_type:
         return words
+    
+
     else:
         return [w[0] for w in words]
+
+#function simply returns sets hyponyms and hypernyms of set token
+def get_hypernyms_hyponyms(token):
+    hypernyms = set()
+    hyponyms = set()
+    synsets = wordnet.synsets(token.text)
+    for synset in synsets:
+        for hypernym in synset.hypernyms():
+            hypernyms.add(hypernym)
+        for hyponym in synset.hyponyms():
+            hyponyms.add(hyponym)
+    
+    return hypernyms, hyponyms
