@@ -12,3 +12,4 @@ When adding dependencies you should run `pipreqs . --force` from the root direct
 ### Notes
 
 - Sentence pairs 99 and 129 removed from dataset because they do not belong in it (source https://semanticsimilarity.files.wordpress.com/2013/11/trmmucca20131_12.pdf)
+- Addded library spacy, `pip install spacy` then added en_core_web_sm using `python -m spacy download en_core_web_sm`  please fix requirements file as i did not want to try and break it :)
