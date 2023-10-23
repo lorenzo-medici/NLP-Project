@@ -94,32 +94,42 @@ def method_3_hypernyms(S1, S2):
     S1 = preprocess_sentence(S1, wordnet_lemmization=True, return_word_tag_type=True)
     S2 = preprocess_sentence(S2, wordnet_lemmization=True, return_word_tag_type=True)
 
-    value = 0.0
     max_hypernyms = 0
     max_hyponyms = 0
 
     for noun1 in S1:
-        if noun1[1] == wordnet.NOUN:
-            hypernyms1 = get_hypernyms(noun1)
-            for noun2 in S2:
+        for noun2 in S2:
+            if noun1[1] == noun2[1] == wordnet.NOUN:
                 if noun2[1] == wordnet.NOUN:
-                    hypernyms2 = get_hypernyms(noun2)
+                    hypernyms1 = get_hypernyms(noun1[0])
+                    hypernyms2 = get_hypernyms(noun2[0])
                     hypernyms_union_length = len(hypernyms1.union(hypernyms2))
                     hypernyms_intersection_length = len(hypernyms1.intersection(hypernyms2))
-                    value = hypernyms_intersection_length / hypernyms_union_length
+
+                    if hypernyms_union_length != 0:
+                        value = hypernyms_intersection_length / hypernyms_union_length
+                    else:
+                        value = 0
+
                     if value > max_hypernyms:
                         max_hypernyms = value
-        elif noun1[1] == wordnet.VERB:
-            hyponyms1 = get_hyponyms(noun1)
-            for noun2 in S2:
-                if noun2[1] ==  wordnet.VERB:
-                    hyponyms2 = get_hyponyms(noun2)
-                    hypernyms_union_length = len(hyponyms1.union(hyponyms2))
-                    hypernyms_intersection_length = len(hyponyms1.intersection(hyponyms2))
-                    value = hypernyms_intersection_length / hypernyms_union_length
+
+            elif noun1[1] == noun2[1] == wordnet.VERB:
+                if noun2[1] == wordnet.VERB:
+                    hyponyms1 = get_hyponyms(noun1[0])
+                    hyponyms2 = get_hyponyms(noun2[0])
+                    hyponyms_union_length = len(hyponyms1.union(hyponyms2))
+                    hyponyms_intersection_length = len(hyponyms1.intersection(hyponyms2))
+
+                    if hyponyms_union_length != 0:
+                        value = hyponyms_intersection_length / hyponyms_union_length
+                    else:
+                        value = 0
+
                     if value > max_hyponyms:
                         max_hyponyms = value
-    return (max_hypernyms+max_hyponyms)/2
+
+    return (max_hypernyms + max_hyponyms) / 2
 
 
 def method_4_library(S1, S2):
