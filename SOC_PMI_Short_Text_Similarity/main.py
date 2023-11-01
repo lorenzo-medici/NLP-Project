@@ -64,7 +64,7 @@ def soc_similarity(S1, S2):
         Pi.append(Matrix[maxi][maxj])
         Matrix = delete(Matrix, maxi, maxj)
 
-    Delta = 2.0
+    Delta = len(common)
     try:
         similarity = ((Delta + sum(Pi)) * (len(S1_next) + len(S2_next))) / (2 * len(S1_next) * len(S2_next))
     except ZeroDivisionError:

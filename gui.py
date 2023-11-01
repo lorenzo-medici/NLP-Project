@@ -5,6 +5,7 @@
 
 import tkinter as tk
 import tkinter.ttk as ttk
+
 from similarity_calculators import *
 
 
@@ -37,7 +38,7 @@ def draw_gui():
     m_label.grid(row=2, column=0, sticky=tk.W, padx=10)
 
     methodChoice = tk.IntVar()
-    m1_radio = tk.Radiobutton(window, text="Mihalacea et al.", variable=methodChoice, value=0, )
+    m1_radio = tk.Radiobutton(window, text="Mihalcea et al.", variable=methodChoice, value=0, )
     m1_radio.grid(row=3, column=0, sticky=tk.W, ipadx=10, columnspan=2)
     m2_radio2 = tk.Radiobutton(window, text="WuPalmer average", variable=methodChoice, value=1)
     m2_radio2.grid(row=4, column=0, sticky=tk.W, ipadx=10, columnspan=2)

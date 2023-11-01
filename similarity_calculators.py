@@ -86,10 +86,6 @@ def method_2_wupalmer(S1, S2):
         return 0.0
 
 
-# work yet to be done: not sure what the final expression is
-# but this functions takes nouns and verbs from both snetences
-# gets their hyponyms and hypernyms and gets their union and intersection
-# the max should be very simple to implement once i know what max am i looking for
 def method_3_hypernyms(S1, S2):
     S1 = preprocess_sentence(S1, wordnet_lemmization=True, return_word_tag_type=True)
     S2 = preprocess_sentence(S2, wordnet_lemmization=True, return_word_tag_type=True)
